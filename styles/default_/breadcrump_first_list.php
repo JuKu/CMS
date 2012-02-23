@@ -1,0 +1,1 @@
+<a href="{HREF}">{CONTENT}</a>

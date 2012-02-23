@@ -1,0 +1,29 @@
+<?php
+header("content-type: text/css");
+?>
+body {
+    background-color:#9AD7FF;
+    color:#002EFF;
+}
+
+#menu {
+    float:left;
+    width:10%;
+}
+
+#breadcrump {
+    background-color:#CFFFFF;
+    color:#300000;
+}
+
+#content {
+    float:right;
+    width:90%;
+}
+
+#text {
+    background-color:#CFFFFF;
+    color:#000085;
+
+    min-height:200px;
+}

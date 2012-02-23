@@ -1,0 +1,22 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} /cms/(.*).html
+RewriteRule (.*) index.php?include=%1
+<FilesMatch "^\." >
+deny from all
+</FilesMatch>
+<FilesMatch "^\.ini" >
+deny from all
+</FilesMatch>
+ErrorDocument 404 /cms/404.html
+Redirect permanent index.php?include=(.*) /cms/%1.html
+DirectoryIndex Startseite.html index.php
+Options -Indexes
+#Options -Includes
+RewriteCond %{REQUEST_URI} /cms/config.ini
+RewriteRule (.*) index.php?include=404
+<FilesMatch "\.ini$">
+order allow,deny
+deny from all
+</FilesMatch>
+AddType application/x-httpd-php .css
+AddType application/x-httpd-php .js
