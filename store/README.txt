@@ -1,0 +1,1 @@
+Dieser Ordner ist ein Ablage-Ordner, wo alle möglichen Dateien gespeichert werden, z.B. um ein Update wieder zu deinstallieren usw.
