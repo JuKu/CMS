@@ -8,5 +8,7 @@ desktop.ini
 .DS_Store
 .directory
 
+config.*
+
 config.ini
 Cache/styles/*
