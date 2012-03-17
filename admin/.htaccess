@@ -1,0 +1,4 @@
+RewriteEngine off
+Options -Indexes
+
+ErrorDocument 404 "<html><head><title>Fehler 404</title></head><body><h2>Fehler 404 - Datei nicht gefunden.</h2></body></html>"

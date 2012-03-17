@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN\" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
 <head>
-<title>{TITLE}</title>
-{HEADER}
+<title><?php echo $page->getTitle(); ?></title>
+<?php $page->getHeader(); ?>
 <style type="text/css">
-@import "{STYLEPATH}/style.css";
+@import "Cache/styles/default/style.css";
 /*@import url("erweitert.css");
 @import url("druck.css") print, embossed;
 @import url("pocketcomputer.css") handheld;
@@ -13,22 +13,22 @@
 </head>
 <body>
 <div style="background-color:#4C1E1E; color:#B3E1E1; min-height:40px; ">
-{WEBSITETITLE}
+<?php echo $page->getWebsiteTitle(); ?>
 </div>
 <!-- Datei: default2/index.php -->
 <div id="content">
 <div id="breadcrump">
-{BREADCRUMP}
+<?php echo $page->getBreadcrump(); ?>
 </div><br />
 <div id="text">
 <div style="margin:10px; ">
-{CONTENT}
+<?php $page->getContent() ?>
 </div>
 </div>
 </div>
 <div id="menu">
 <div style="margin:10px; ">
-{MENU}
+<?php echo $page->getMenu(); ?>
 </div>
 </div>
 </body>

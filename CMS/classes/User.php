@@ -25,6 +25,7 @@ private $zurueck_page = "index.php";
     public function login () {
     
     global $db;
+    global $lang;
     
         if (isset($_REQUEST['option']) && $_REQUEST['option'] == "login" && !$this->islogin()) {
             $error = 0;
@@ -35,21 +36,21 @@ private $zurueck_page = "index.php";
             if (!empty($_REQUEST['user'])) {
                 $user = $db->escape($_REQUEST['user']);
             } else {
-                echo "<b style=\"color:red; \">Sie haben keinen Benutzernamen angegeben.</b>";
+                echo "<b style=\"color:red; \">" . $lang['ERROR_NO_USERNAME'] . "</b>";
                 $error = 1;
             }
             
             if (!empty($_REQUEST['passwort'])) {
-                $password = $db->escape($_REQUEST['passwort']);
+                $password = md5($db->escape($_REQUEST['passwort']));
             } else {
-                echo "<b style=\"color:red; \">Sie haben kein Passwort angegeben.</b>";
+                echo "<b style=\"color:red; \">" . $lang['ERROR_NO_PASSWORD'] . "</b>";
                 $error = 1;
             }
             
             if ($error == 0) {
                 
-                $sql = "SELECT * FROM `user` WHERE `name` = '" . $user . "'; ";
-                $db_erg = $db->query($sql) or die("Anfrage fehlgeschlagen.");
+                $sql = "SELECT * FROM " . TABLE_USERS . " WHERE `name` = '" . $user . "'; ";
+                $db_erg = $db->query($sql) or die($lang['ERROR_DATABASE_QUERY'] . mysql_error());
                 
                 $i = 0;
                 
@@ -71,18 +72,18 @@ private $zurueck_page = "index.php";
                                     $this->admin = true;
                                 }
                                 
-                                echo "<b style=\"color:green; \">Sie wurden erfolgreich eingeloggt.</b> <a href=\"" . $this->zurueck_page . "\">Zur&uuml;ck</a>";
+                                echo "<b style=\"color:green; \">" . $lang['LOGIN_OK'] . "</b> <a href=\"" . $this->zurueck_page . "\">" . $lang['BACK'] . "</a>";
                                 
-                                $sql = "UPDATE `user` SET `ip` = '" . $_SERVER['REMOTE_ADDR'] .  "'; ";
-                                $db_erg_ = $db->query($sql) or die("Anfrage fehlgeschlagen.");
+                                /*$sql = "UPDATE `user` SET `ip` = '" . $_SERVER['REMOTE_ADDR'] .  "'; ";
+                                $db_erg_ = $db->query($sql) or die("Anfrage fehlgeschlagen.");*/
                             
                         } else {
-                            echo "<b style=\"color:red; \">Dieses Benutzerkonto wurde gesperrt.</b>";
+                            echo "<b style=\"color:red; \">" . $lang['ACCOUNT_DEACTIVATED'] . "</b>";
                             require($this->loginformular);
                         }
                         
                     } else {
-                        echo "<b style=\"color:red; \">Sie haben ein falsches Passwort angegeben.</b>";
+                        echo "<b style=\"color:red; \">" . $lang['PASSWORD_WRONG'] . "</b>";
                         require($this->loginformular);
                     }
                     
@@ -90,7 +91,7 @@ private $zurueck_page = "index.php";
                 }
                 
                 if ($i == 0) {
-                    echo "<b style=\"color:red; \">Dieser Benutzername ist nicht in der Datenbank vorhanden.</b>";
+                    echo "<b style=\"color:red; \">" . $lang['USERNAME_NOT_ISSET'] . "</b>";
                     require($this->loginformular);
                 }
                 
@@ -111,8 +112,10 @@ private $zurueck_page = "index.php";
     }
     
     public function logout () {
+        global $lang;
+        
         session_destroy();
-        echo "<b style=\"color:green; \">Sie wurden erfolgreich ausgeloggt.</b> <a href=\"" . $this->zurueck_page . "\">Zur&uuml;ck</a>";
+        echo "<b style=\"color:green; \">" . $lang['LOGOUT_OK'] . "</b> <a href=\"" . $this->zurueck_page . "\">" . $lang['BACK'] . "</a>";
     }
     
     public function AdminPage () {

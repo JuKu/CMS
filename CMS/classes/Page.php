@@ -170,6 +170,10 @@ class Page {
         
     }
     
+    public function getWebsiteTitle () {
+        return Settings::getSetting("title");
+    }
+    
 }
 
 ?>

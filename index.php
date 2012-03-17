@@ -2,15 +2,8 @@
 
 error_reporting(E_ALL);
 
-require("CMS/classes/Database.php");//Hinweis: Ihr könnt die Klammern auch weglassen, nähere Infos gibt es bei Simon^^ (http://www.developertalk.de/user/2-simon/)
-require("CMS/classes/Lang.php");
-require("CMS/classes/Settings.php");
-require("CMS/classes/DBManager.php");
-require("CMS/classes/Config.php");
-require("CMS/classes/SkinController.php");
-require("CMS/classes/View.php");
-require("CMS/classes/Page.php");
-require("CMS/classes/Menu.php");
+require("CMS/constants.php");
+require("CMS/functions.php");
 
 $config_ = new Config("config.ini");
 $DBManager = new DBManager($config_->getConfig());
@@ -20,8 +13,19 @@ if (!$DBManager->isInit() || !$DBManager->getDBDriver()) {
     exit;
 }
 
+//Standart-Sprachdateien laden
+$language = new Language("en");
+$lang = $language->getLanguage();
+
 $db = $DBManager->getDBDriver();
 $db->connect($config_->getConfig());
+
+EventManager::throwEvent("include", ".", $db);
+
+$language = Language::loadLanguage();
+$lang = array_merge($lang, $language->getLanguage());
+
+EventManager::throwEvent("lang_include", ".", array($language, $lang));
 
 $skincontroller = new SkinController();
 $page = new Page();

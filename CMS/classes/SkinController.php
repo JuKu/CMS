@@ -95,6 +95,7 @@ private $breadcrump_zaehler = 0;
         $text = str_replace("{BREADCRUMP}", SkinController::PHPCode("echo " . "$" . "page->getBreadcrump();"), $text);
         
         $text = str_replace("{STYLEPATH}", "Cache/styles/" . SkinController::getSelectedSkin() , $text);
+        $text = str_replace("{WEBSITETITLE}", SkinController::PHPCode("echo $" . "page->getWebsiteTitle();"), $text);
         
         $handle = fopen ("Cache/styles/" . SkinController::getSelectedSkin() . "/index.php", "w");
         
