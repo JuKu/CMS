@@ -23,6 +23,10 @@
 <div id="text">
 <div style="margin:10px; ">
 <?php $page->getContent() ?>
+
+<br /><br />
+
+<?php echo $page->showComments(); ?>
 </div>
 </div>
 </div>

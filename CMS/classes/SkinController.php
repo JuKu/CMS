@@ -7,6 +7,7 @@ private $text_undermenu_list = "";
 private $text_breadcrump_first_list = "";
 private $text_breadcrump_list = "";
 private $breadcrump_zaehler = 0;
+private $comment_list = "";
 
     public function SkinController () {
         
@@ -42,6 +43,15 @@ private $breadcrump_zaehler = 0;
         while (!feof($handle)) {
         $buffer = fgets($handle);
         $this->text_breadcrump_list .= $buffer;
+        }
+
+        fclose($handle);
+        
+        $handle = fopen ("styles/" . SkinController::getSelectedSkin() . "/comment_list.php", "r");
+
+        while (!feof($handle)) {
+        $buffer = fgets($handle);
+        $this->comment_list .= $buffer;
         }
 
         fclose($handle);
@@ -93,9 +103,9 @@ private $breadcrump_zaehler = 0;
         $text = str_replace("{TITLE}", SkinController::PHPCode("echo " . "$" . "page->getTitle();"), $text);
         $text = str_replace("{MENU}", SkinController::PHPCode("echo " . "$" . "page->getMenu();"), $text);
         $text = str_replace("{BREADCRUMP}", SkinController::PHPCode("echo " . "$" . "page->getBreadcrump();"), $text);
-        
         $text = str_replace("{STYLEPATH}", "Cache/styles/" . SkinController::getSelectedSkin() , $text);
         $text = str_replace("{WEBSITETITLE}", SkinController::PHPCode("echo $" . "page->getWebsiteTitle();"), $text);
+        $text = str_replace("{COMMENTS}", SkinController::PHPCode("echo $" . "page->showComments();"), $text);
         
         $handle = fopen ("Cache/styles/" . SkinController::getSelectedSkin() . "/index.php", "w");
         
@@ -161,6 +171,52 @@ private $breadcrump_zaehler = 0;
         echo "" . $text;
         
         $this->breadcrump_zaehler = $this->breadcrump_zaehler + 1;
+        
+    }
+    
+    public function showComments () {
+    
+    global $page;
+        
+        $handle = fopen ("styles/" . SkinController::getSelectedSkin() . "/comments.php", "r");
+
+        $text = "";
+
+        while (!feof($handle)) {
+        $buffer = fgets($handle);
+        $text .= $buffer;
+        }
+
+        fclose ($handle);
+
+        $text = str_replace("{COMMENTS}", SkinController::PHPCode("$" . "page->showCommentList(); "), $text);
+
+        $handle = fopen ("Cache/styles/" . SkinController::getSelectedSkin() . "/comments.php", "w");
+
+        fwrite($handle, $text);
+
+        fclose($handle);
+        
+        require("Cache/styles/" . SkinController::getSelectedSkin() . "/comments.php");
+        
+    }
+    
+    public function showCommentList ($comments) {
+        
+        foreach ($comments as $comment) {
+            
+            $text = $this->comment_list;
+
+            $text = str_replace("{HREF}", "#", $text);
+            $text = str_replace("{AUTHOR}", $comment['username'], $text);
+            $text = str_replace("{DATE}", $comment['date'], $text);
+            $text = str_replace("{CONTENT}", $comment['text'], $text);
+            
+            $text = str_replace("{ID}", $comment['id'], $text);
+
+            echo "" . $text;
+            
+        }
         
     }
     

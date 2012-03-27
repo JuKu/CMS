@@ -18,5 +18,5 @@ RewriteRule (.*) index.php?include=404
 order allow,deny
 deny from all
 </FilesMatch>
-AddType application/x-httpd-php .css
-AddType application/x-httpd-php .js
+#AddType application/x-httpd-php .css
+#AddType application/x-httpd-php .js

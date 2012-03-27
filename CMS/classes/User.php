@@ -8,8 +8,9 @@ private $admin = false;
 private $loginformular = "loginformular.php";
 private $zurueck_page = "index.php";
 
-    public function User ($loginformular) {
-        $this->loginformular = $loginformular;
+    public function User ($loginformular, $lang) {
+        $templateengine = new TemplateEngine($lang);
+        $this->loginformular = $templateengine->getFile("../", "includes", $loginformular);
     }
     
     public function islogin () {

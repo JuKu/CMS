@@ -23,6 +23,10 @@
 <div id="text">
 <div style="margin:10px; ">
 {CONTENT}
+
+<br /><br />
+
+{COMMENTS}
 </div>
 </div>
 </div>

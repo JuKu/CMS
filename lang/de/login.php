@@ -13,7 +13,13 @@ $lang = array_merge($lang, array(//Mit dem Befehl array_merge füge ich dem Array
     'BACK'                      => 'Zur&uuml;ck',
     'PASSWORD_WRONG'            => 'Sie haben ein falsches Passwort angegeben.',
     'USERNAME_NOT_ISSET'        => 'Dieser Benutzername ist nicht in der Datenbank vorhanden.',
-    'LOGOUT_OK'                 => 'Sie wurden erfolgreich ausgeloggt.'
+    'LOGOUT_OK'                 => 'Sie wurden erfolgreich ausgeloggt.',
+    'WELCOME'			=> 'Herzlich Willkommen',
+    'LOGIN_TITLE'		=> 'Einloggen',
+    'USERNAME'			=> 'Benutzername',
+    'PASSWORD'			=> 'Passwort',
+    'LOGIN'			=> 'Login',
+    'IS_LOGIN'			=> 'Ist eingeloggt.'     
 ));
 
 ?>

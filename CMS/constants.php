@@ -16,5 +16,12 @@ define('TABLE_PLUGINS', 'plugins');
 define('TABLE_STYLES', 'styles');
 define('TABLE_EVENTS', 'cms_events');
 define('TABLE_USERS', 'cms_users');
+define('TABLE_ADMINMENU', 'cms_admin_menu');
+define('TABLE_WIDGETS', 'cms_widgets');
+define('TABLE_DASHBORAD_WIDGETS', 'cms_dashboard_widgets');
+define('TABLE_LOG', 'cms_log');
+define('TABLE_ICONSETS', 'cms_iconsets');
+define('TABLE_COMMENTS', 'cms_comments');
+define('TABLE_LANGUAGE', 'cms_language');
 
 ?>

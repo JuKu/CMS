@@ -8,7 +8,7 @@ private $globalmenuID = 1;
     
     global $db;
         
-        $sql = "SELECT * FROM `menu` WHERE `menuID` = '" . $this->globalmenuID . "' AND `activated` = '1'; ";
+        $sql = "SELECT * FROM `menu` WHERE `menuID` = '" . $this->globalmenuID . "' AND `owner` = '-1' AND `activated` = '1'; ";
         
         $db_erg = $db->query($sql) or die("Anfrage fehlgeschlagen.");
         

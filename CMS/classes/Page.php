@@ -174,6 +174,23 @@ class Page {
         return Settings::getSetting("title");
     }
     
+    public function showComments () {
+        
+    global $skincontroller;
+    
+        $skincontroller->showComments();
+        
+    }
+    
+    public function showCommentList () {
+        
+        global $comments;
+        global $skincontroller;
+    
+        $skincontroller->showCommentList($comments->getComments($this->id));
+        
+    }
+    
 }
 
 ?>

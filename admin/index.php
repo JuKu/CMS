@@ -44,6 +44,12 @@ $db->connect($config_->getConfig());
 $language = Language::loadLanguage();
 $lang = array_merge($lang, $language->getLanguage());
 
+$log = new Log($db, $lang);
+$sys = new sys($db, $lang, $log);
+
+$iconsets = new IconSets($sys, $db);
+$sys->setIconSets($iconsets);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -77,6 +83,7 @@ $lang = array_merge($lang, $language->getLanguage());
         position:absolute;
         top:120px;
         width:80%;
+        min-height:250px;
     }
     
     #adminchat_ {
@@ -174,12 +181,12 @@ width: 100%;
 }
 
 /*--bewirkt Hover-Effekt für IE kleiner 7 auch für ul- und li-Elemente--*/
-*html body {
+* html body {
 behavior: url(csshover3-source.htc);
 font-size: 100%;
 }
 
-*html #menu ul li a {
+* html #menu ul li a {
 height: 1%;
 }
 
@@ -225,7 +232,7 @@ left: 100%;
   
 
   
-  $user = new User("loginformular.php");
+  $user = new User("loginformular.php", $lang);
 
 if (isset($_REQUEST['option']) && $_REQUEST['option'] == "logout") {
     $user->logout();
@@ -237,46 +244,40 @@ if ($user->islogin()) {
 
 } else {
     $user->login();
+    echo "</body></html>";
+
+    exit;
 }
 
 if (isset($ausgeloggt_ok) && $ausgeloggt_ok == 1) {
       echo "<p>Sie wurden erfolgreich ausgeloggt.</p>";
 }
+
+AdminMenu::getMenu();
+
+//echo "<div id=\"inhalt\" style=\"background-color:#003366; \"><div style=\"color:white; \">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Admin-Bereich</b></div><div style=\"margin:20px; margin-top:8px; background-color:/*#008080*//*#308182*//*#003366*/#F1F1F1; min-height:240px; \">test";
+
+if (!isset($_REQUEST['include']) || $_REQUEST['include'] == "Dashboard") {
+    require("dashboard.php");
+} else {
+    $include = $db->escape($_REQUEST['include']);
+    
+    if (file_exists("pages/" . $include)) {
+    
+        $templateengine = new TemplateEngine($lang);
+        $page_url = $templateengine->getFile("../", "pages", $include);
+        
+        require(/*"pages/" . $include*/$page_url);
+    } else {
+        require("pages/errors/404.php");
+    }
+    
+}
+
+//require("dashboard.php");
+//echo "</div></div>";
   
   ?>
   
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<!--
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN\" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
-<head>
-<title>Admin-Bereich</title>
-</head>
-<body>
-<?php
-
-if (!$user->islogin()) {
-    $user->login();
-}
-
-if ($user->islogin()) {
-    $user->AdminPage();
-} else {
-    echo "</body></html>";
-    exit;
-}
-
-?>
-</body>
-</html>-->

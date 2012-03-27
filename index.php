@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 require("CMS/constants.php");
 require("CMS/functions.php");
-
+                                 
 $config_ = new Config("config.ini");
 $DBManager = new DBManager($config_->getConfig());
 
@@ -29,6 +29,8 @@ EventManager::throwEvent("lang_include", ".", array($language, $lang));
 
 $skincontroller = new SkinController();
 $page = new Page();
+
+$comments = new Comments($db, $lang);
 
 //echo Settings::getSetting("selectedskin") . "<br />";//Zum testen, danach bitte diese zeile entfernen
 //echo "Ihr Style-Pfad: " . SkinController::getSelectedSkin();
