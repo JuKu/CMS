@@ -15,7 +15,7 @@
 <div class="website">
 
 <div class="head">
-<img src="styles/default/header.png" alt="CMS-Logo" /><img src="styles/default/slogan.png" alt="Slogan" />
+<img src="styles/teststyle/header.png" alt="CMS-Logo" /><img src="styles/teststyle/slogan.png" alt="Slogan" />
 </div>
 <!-- <div style="background-color:#4C1E1E; color:#B3E1E1; min-height:40px; ">
 {WEBSITETITLE}

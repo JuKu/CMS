@@ -106,6 +106,9 @@ private $comment_list = "";
         $text = str_replace("{STYLEPATH}", "Cache/styles/" . SkinController::getSelectedSkin() , $text);
         $text = str_replace("{WEBSITETITLE}", SkinController::PHPCode("echo $" . "page->getWebsiteTitle();"), $text);
         $text = str_replace("{COMMENTS}", SkinController::PHPCode("echo $" . "page->showComments();"), $text);
+        $text = str_replace("{COPYRIGHT}", "&copy; JuKu <a href=\"http://www.developertalk.de/87-juku-developertalk/benutzerblogs/\" style=\"color:blue; \">CMS-Tutorial</a>", $text);
+        
+        $text = str_replace("{BREADCRUMP_TEXT}", SkinController::PHPCode("echo " . "Settings::getSetting(\"breadcrump_text\"); "), $text);
         
         $handle = fopen ("Cache/styles/" . SkinController::getSelectedSkin() . "/index.php", "w");
         

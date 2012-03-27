@@ -12,49 +12,28 @@
 </style>
 </head>
 <body>
-<div class="website">
-
-<div class="head">
-<img src="styles/default/header.png" alt="CMS-Logo" /><img src="styles/default/slogan.png" alt="Slogan" />
-</div>
-<!-- <div style="background-color:#4C1E1E; color:#B3E1E1; min-height:40px; ">
-{WEBSITETITLE}
-</div> -->
-<div class="title">
+<div style="background-color:#4C1E1E; color:#B3E1E1; min-height:40px; ">
 {WEBSITETITLE}
 </div>
 <!-- Datei: default2/index.php -->
 <div id="content">
 <div id="breadcrump">
-<b>{BREADCRUMP_TEXT}</b> {BREADCRUMP}
-</div>
-<div style="width:100%; height:8px; background-color:#FFCB04; ">
-&nbsp;
-</div>
-<br />
-<div id="menu" style="margin:10px; ">
-{MENU}
-</div>
+{BREADCRUMP}
+</div><br />
 <div id="text">
 <div style="margin:10px; ">
 {CONTENT}
 
 <br /><br />
 
-<div class="comments">
 {COMMENTS}
 </div>
 </div>
 </div>
+<div id="menu">
+<div style="margin:10px; ">
+{MENU}
 </div>
-
-<!-- <div id="menu">
-</div> -->
-
-<div id="footer">
-<center><b>{COPYRIGHT}</b></center>
-</div>
-
 </div>
 </body>
 </html>
