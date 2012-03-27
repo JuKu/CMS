@@ -23,3 +23,5 @@ config.*
 
 config.ini
 Cache/styles/*
+
+Cache/template/*
