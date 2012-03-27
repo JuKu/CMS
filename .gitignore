@@ -1,3 +1,12 @@
+$ cat .gitignore
+
+# Can ignore specific files
+.DS_Store
+
+# Use wildcards as well
+*~
+*.swp
+
 # Don't commit source PSD OR AI files
 *.psd
 *.ai
